@@ -6,7 +6,7 @@ const verifySignature = require('./src/typeformsignature')
 const dbQuery = require('./src/db')
 const sendMailChimp = require('./src/mailchimp')
 const dataCleaning = require('./src/datacleaning')
-const sendMail = require("./email/email");
+// const sendMail = require("./email/email");
 
 const port = process.env.PORT || 3000
 

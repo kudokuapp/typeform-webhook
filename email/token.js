@@ -6,10 +6,10 @@ dotenv.config()
 const { google } = require('googleapis')
 const fs = require('fs')
 
-const { CLIENT_SECRET: client_secret, 
-        CLIENT_ID: client_id, 
-        REDIRECT_URIS: redirect_uris,
-        CODE_FROM_GOOGLE: code } = process.env
+const { GMAIL_CLIENT_SECRET: client_secret, 
+        GMAIL_CLIENT_ID: client_id, 
+        GMAIL_REDIRECT_URIS: redirect_uris,
+        GMAIL_CODE: code } = process.env
 
 const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris)
 

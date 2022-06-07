@@ -6,9 +6,9 @@ const tokens = require('./secure/token.json')
 
 const getGmailService = () => {
 
-    const { CLIENT_SECRET: client_secret,
-            CLIENT_ID: client_id,
-            REDIRECT_URIS: redirect_uris } = process.env
+    const { GMAIL_CLIENT_SECRET: client_secret,
+            GMAIL_CLIENT_ID: client_id,
+            GMAIL_REDIRECT_URIS: redirect_uris } = process.env
     
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris)
     

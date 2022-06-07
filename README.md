@@ -89,7 +89,7 @@ To properly connect the gmail API, first read [this](https://www.labnol.org/goog
 2. Go to the URL
 3. Sign in using your google account that has permission to the gmail API
 4. You then will be redirected
-5. Copy the code given. The url should be like this `https://localhost__code__`
+5. Copy the code given. The url should be like this `https://localhost?code=__code__&scope=xxx`
 6. Paste the code to the enviroment variable `CODE_FROM_GOOGLE`
 7. Then run `token.js`
 8. You will then have `token.json` automatically generated

@@ -38,15 +38,15 @@ app.post("/webhook", async(req, res) => {
         
         sendMailChimp(firstName, lastName, email, wa)
 
-        if (form_response.form_id === "PZR271ql") {
-            sendMail(email, 'en')
-              .then((messageId) => console.log("Message sent successfully:", messageId))
-              .catch((err) => console.error(err))
-          } 
-        else if (form_response.form_id === "Aq7EqLjd") {
-            sendMail(email, 'id')
-              .then((messageId) => console.log("Message sent successfully:", messageId))
-              .catch((err) => console.error(err))
-          }
+        // if (form_response.form_id === "PZR271ql") {
+        //     sendMail(email, 'en')
+        //       .then((messageId) => console.log("Message sent successfully:", messageId))
+        //       .catch((err) => console.error(err))
+        //   } 
+        // else if (form_response.form_id === "Aq7EqLjd") {
+        //     sendMail(email, 'id')
+        //       .then((messageId) => console.log("Message sent successfully:", messageId))
+        //       .catch((err) => console.error(err))
+        //   }
     }
 })

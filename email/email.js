@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const { google } = require('googleapis')
 const MailComposer = require('nodemailer/lib/mail-composer')
-const tokens = require('./secure/token.json')
+const tokens = require('../secure/token.json')
 
 const getGmailService = () => {
 

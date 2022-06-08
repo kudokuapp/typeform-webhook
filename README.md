@@ -12,27 +12,27 @@ To start the development server, first we need to install the dependencies:
 npm install
 ```
 Then, make a `.env` file on the **root** folder with the proper environment variables:
-|          Variable           |         Provider          |
-| --------------------------- | ------------------------- |
-| TYPEFORM_WEBHOOK_SECRET     | Typeform                  |
-| DB_USERNAME                 | DigitalOcean (postgreSQL) |
-| DB_PASSWORD                 | DigitalOcean (postgreSQL) |
-| DB_HOST                     | DigitalOcean (postgreSQL) |
-| DB_PORT                     | DigitalOcean (postgreSQL) |
-| DB_DATABASE                 | DigitalOcean (postgreSQL) |
-| MAILCHIMP_API_KEY           | MailChimp                 |
-| MAILCHIMP_SERVER_PREFIX     | MailChimp                 |
-| MAILCHIMP_LISTS_ID          | MailChimp                 |
-| PORT                        | Local machine             |
-| CLIENT_ID                   | GMAIL API*                |
-| PROJECT_ID                  | GMAIL API*                |
-| AUTH_URI                    | GMAIL API*                |
-| TOKEN_URI                   | GMAIL API*                |
-| AUTH_PROVIDER_X509_CERT_URL | GMAIL API*                |
-| CLIENT_SECRET               | GMAIL API*                |
-| REDIRECT_URIS               | GMAIL API*                |
-| GMAIL_SCOPES                | GMAIL API*                |
-| CODE_FROM_GOOGLE            | GMAIL API**               |
+|            Variable               |         Provider          |
+| --------------------------------- | ------------------------- |
+| TYPEFORM_WEBHOOK_SECRET           | Typeform                  |
+| DB_USERNAME                       | DigitalOcean (postgreSQL) |
+| DB_PASSWORD                       | DigitalOcean (postgreSQL) |
+| DB_HOST                           | DigitalOcean (postgreSQL) |
+| DB_PORT                           | DigitalOcean (postgreSQL) |
+| DB_DATABASE                       | DigitalOcean (postgreSQL) |
+| MAILCHIMP_API_KEY                 | MailChimp                 |
+| MAILCHIMP_SERVER_PREFIX           | MailChimp                 |
+| MAILCHIMP_LISTS_ID                | MailChimp                 |
+| PORT                              | Local machine             |
+| GMAIL_CLIENT_ID                   | GMAIL API*                |
+| GMAIL_PROJECT_ID                  | GMAIL API*                |
+| GMAIL_AUTH_URI                    | GMAIL API*                |
+| GMAIL_TOKEN_URI                   | GMAIL API*                |
+| GMAIL_AUTH_PROVIDER_X509_CERT_URL | GMAIL API*                |
+| GMAIL_CLIENT_SECRET               | GMAIL API*                |
+| GMAIL_REDIRECT_URIS               | GMAIL API*                |
+| GMAIL_GMAIL_SCOPES                | GMAIL API*                |
+| GMAIL_CODE                        | GMAIL API**               |
 
 N.B.: Make sure you also have a `.crt` file for connecting the database. Place it under `secure/ca-certificate.crt`
 

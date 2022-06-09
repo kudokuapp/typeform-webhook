@@ -3,9 +3,8 @@ const router = express.Router()
 
 const verifySignature = require('../src/typeformsignature')
 const { dbQueryUsersData } = require('../src/db')
-const sendMailChimp = require('../src/mailchimp')
-const dataCleaning = require('../src/datacleaning')
-const sendMail = require("../email/email")
+const { dataCleaning1 } = require('../src/datacleaning')
+const { sendMailType1 } = require("../email/email")
 
 router.get("/", (req, res) => {
     res.send("it's live!")
@@ -27,19 +26,23 @@ router.post("/", async(req, res) => {
 
     //Filter response events only
     if (event_type === "form_response") {
-        const { firstName, lastName, email, wa } = dataCleaning(form_response.answers[0].text, form_response.answers[1].text, form_response.answers[2].email, form_response.hidden.wa)
+        const { firstName, lastName, age, gender, email, wa } = dataCleaning1(
+            form_response.answers[0].text, 
+            form_response.answers[1].text, 
+            form_response.answers[2].number, 
+            form_response.answers[3].choice.label, 
+            form_response.answers[4].email, 
+            form_response.hidden.wa)
 
-        dbQueryUsersData(firstName, lastName, email, wa)
-        
-        sendMailChimp(firstName, lastName, email, wa)
+        dbQueryUsersData(firstName, lastName, age, gender, email, wa)
 
         if (form_response.form_id === "PZR271ql") {
-            sendMail(email, 'en', type=1, firstName, lastName, wa)
+            sendMailType1(email, 'en', type=1, firstName, lastName, age, gender, wa)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           } 
         else if (form_response.form_id === "Aq7EqLjd") {
-            sendMail(email, 'id', type=1, firstName, lastName, wa)
+            sendMailType1(email, 'id', type=1, firstName, lastName, age, gender, wa)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           }

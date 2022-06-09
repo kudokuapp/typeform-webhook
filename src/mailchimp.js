@@ -17,7 +17,7 @@ const mailChimpConfig = () => {
 
 
 
-const sendMailChimp = (firstName, lastName, email, wa) => {
+const sendMailChimp = (firstName, lastName, age, gender, occupation, email, wa) => {
     
     mailChimpConfig()
 
@@ -26,7 +26,10 @@ const sendMailChimp = (firstName, lastName, email, wa) => {
         status: "subscribed",
         merge_fields: { FNAME: firstName,
                         LNAME: lastName,
-                        PHONE: wa }
+                        PHONE: wa,
+                        OCCUPATION: occupation,
+                        AGE: age,
+                        GENDER: gender }
     })
 
     .catch((e) => { console.error(e) })

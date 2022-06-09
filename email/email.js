@@ -46,9 +46,8 @@ const prepareMail = async (options) => {
 
 
 //send email using this
-//type=1 for sending email completing the personal data form
-//type=2 for sending email completing the research form
-const sendMail = async (email, lang, type, firstName, lastName, wa) => {
+//type=1 for sendMailType1 for sending email completing the personal data form
+const sendMailType1 = async (email, lang, firstName, lastName, age, gender, wa) => {
 
     let options = {
       to: email,
@@ -56,32 +55,16 @@ const sendMail = async (email, lang, type, firstName, lastName, wa) => {
       textEncoding: "base64",
     }
 
-    if (lang === 'id') {
-      // options.text = "Email ini dikirim dari tim Kudoku"
-
-      if (type === 1) {
-        options.subject = `Bahasa Indonesia Type 1`
-        options.html = bahasaType1(firstName, lastName, email, wa)
-      }
-
-      else if (type === 2) {
-        options.subject = `Bahasa Indonesia Type 2`
-        options.html = bahasaType2(firstName, lastName, email, wa)
-      }
+    if (lang === 'en') {
+      // options.text = "This email is sent from the Kudoku team"
+      options.subject = `English Type 1`
+      options.html = englishType1(firstName, lastName, email, age, gender, wa)
     }
 
-    else if (lang === 'en') {
-      // options.text = "This email is sent from the Kudoku team"
-
-      if (type === 1) {
-        options.subject = `English Type 1`
-        options.html = englishType1(firstName, lastName, email, wa)
-      }
-
-      else if (type === 2) {
-        options.subject = `English Type 2`
-        options.html = englishType2(firstName, lastName, email, wa)
-      }
+    else if (lang === 'id') {
+      // options.text = "Email ini dikirim dari tim Kudoku"
+      options.subject = `Bahasa Indonesia Type 1`
+      options.html = bahasaType1(firstName, lastName, email, age, gender, wa)
     }
 
     const messageId = await prepareMail(options)
@@ -89,4 +72,30 @@ const sendMail = async (email, lang, type, firstName, lastName, wa) => {
     return messageId
 }
 
-module.exports = sendMail
+//type=2 for sendMailType2 for sending email completing the research form
+const sendMailType2 = async (email, lang, firstName, ID) => {
+  let options = {
+    to: email,
+    replyTo: "furqon@kudoku.id",
+    textEncoding: "base64",
+  }
+
+  if (lang === 'en') {
+    // options.text = "This email is sent from the Kudoku team"
+    options.subject = `English Type 2`
+    options.html = englishType2(firstName, ID)
+  }
+
+
+  else if (lang === 'id') {
+    // options.text = "Email ini dikirim dari tim Kudoku"
+    options.subject = `Bahasa Indonesia Type 2`
+    options.html = bahasaType2(firstName, ID)
+  }
+
+  const messageId = await prepareMail(options)
+  
+  return messageId
+}
+
+module.exports = {sendMailType1, sendMailType2}

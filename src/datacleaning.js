@@ -1,15 +1,71 @@
-const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+const capitalizeFirstLetter = (arg) => {
+    return arg.charAt(0).toUpperCase() + arg.slice(1);
 }
 
-//data cleaning
-const dataCleaning = (firstNameArg, lastNameArg, emailArg, waArg) => {
-    const firstName = capitalizeFirstLetter(firstNameArg.toString())
-    const lastName = capitalizeFirstLetter(lastNameArg.toString())
-    const email = emailArg.toString().toLowerCase()
-    const wa = '+' + waArg.toString().trim()
-
-    return {firstName, lastName, email, wa}
+const toStrLowerCase = (arg) => {
+    return arg.toString().toLowerCase()
 }
 
-module.exports = dataCleaning
+const cleanName = (arg) => {
+    return capitalizeFirstLetter(toStrLowerCase(arg))
+}
+
+const cleanNum = (arg) => {
+    return Number(arg)
+}
+
+const cleanPhoneNum = (arg) => {
+    let phoneNum = '+' + arg.toString()
+    return phoneNum.trim()
+}
+
+const cleanGender = (arg) => {
+
+    let variable
+
+    switch (arg) {
+        case 'Male':
+            variable = 'M'
+            break;
+        case 'Female':
+            variable = 'F'
+            break;
+        case 'Other':
+            variable = 'X'
+            break;
+
+        default:
+            variable = 'X'
+            break;
+    }
+    return variable
+}
+
+//data cleaning for users_data
+const dataCleaning1 = (firstNameArg, lastNameArg, ageArg, genderArg, emailArg, waArg) => {
+    const firstName = cleanName(firstNameArg)
+    const lastName = cleanName(lastNameArg)
+    const age = cleanNum(ageArg)
+    const gender = cleanGender(genderArg)
+    const email = toStrLowerCase(emailArg)
+    const wa = cleanPhoneNum(waArg)
+
+    return {firstName, lastName, age, gender, email, wa}
+}
+
+//data cleaning for users_final
+const dataCleaning2 = (firstNameArg, lastNameArg, ageArg, genderArg, occupationArg, emailArg, waArg, formTokenArg) => {
+
+    const firstName = cleanName(firstNameArg)
+    const lastName = cleanName(lastNameArg)
+    const age = cleanNum(ageArg)
+    const gender = cleanGender(genderArg)
+    const occupation = cleanName(occupationArg)
+    const email = toStrLowerCase(emailArg)
+    const wa = cleanPhoneNum(waArg)
+    const formToken = formTokenArg.toString()
+
+    return {firstName, lastName, age, gender, occupation, email, wa, formToken}
+}
+
+module.exports = { dataCleaning1, dataCleaning2 }

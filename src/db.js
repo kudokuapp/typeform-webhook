@@ -23,16 +23,21 @@ const pool = new Pool({
     },
 })
 
-
-
-const dbQueryUsersData = (firstName, lastName, email, wa) => {
-
+const getTodayDate = () => {
   const today = new Date()
   const todayDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
 
-  const queryString = `INSERT INTO users_data (firstname, lastname, email, whatsapp, registerdate) VALUES ($1, $2, $3, $4, $5)`
+  return todayDate
+}
 
-  const arr = [firstName, lastName, email, wa, todayDate]
+
+const dbQueryUsersData = (firstName, lastName, age, gender, email, wa) => {
+
+  const todayDate = getTodayDate()
+
+  const queryString = `INSERT INTO users_data (firstname, lastname, age, gender, email, whatsapp, registerdate) VALUES ($1, $2, $3, $4, $5, $6, $7)`
+
+  const arr = [firstName, lastName, age, gender, email, wa, todayDate]
 
   pool.query (queryString, arr, 
     (err) => {
@@ -40,18 +45,25 @@ const dbQueryUsersData = (firstName, lastName, email, wa) => {
     })
 }
 
-const dbQueryUsersAnswers = (firstName, lastName, email, wa) => {
+const dbQueryUsersAnswers = (firstName, lastName, age, gender, occupation, email, wa, formToken) => {
 
-  const today = new Date()
-  const todayDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+  const todayDate = getTodayDate()
 
-  const queryString = `INSERT INTO users_data (firstname, lastname, email, whatsapp, registerdate) VALUES ($1, $2, $3, $4, $5)`
+  const queryString = `INSERT INTO users_final (firstname, lastname, age, gender, occupation, email, whatsapp, form_response_token, registerdate) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`
 
-  const arr = [firstName, lastName, email, wa, todayDate]
+  const arr = [firstName, lastName, age, gender, occupation, email, wa, formToken, todayDate]
 
-  pool.query (queryString, arr, 
-    (err) => {
-      if (err) { console.error(err) }
+  return new Promise(function (resolve, reject){
+      pool.query(queryString, arr, (err, res) => {
+          if (err) {
+              console.error(err)
+              reject(0)
+          }
+      
+          else {
+              resolve(res.rows[0])
+          }
+        })
     })
 }
 

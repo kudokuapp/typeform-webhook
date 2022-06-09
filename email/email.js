@@ -3,6 +3,8 @@ dotenv.config()
 const { google } = require('googleapis')
 const MailComposer = require('nodemailer/lib/mail-composer')
 const tokens = require('../secure/token.json')
+const { englishType1, bahasaType1 } = require('./html/type1Email')
+const { englishType2, bahasaType2 } = require('./html/type2Email')
 
 const getGmailService = () => {
 
@@ -44,29 +46,41 @@ const prepareMail = async (options) => {
 
 
 //send email using this
-const sendMail = async (email, lang) => {
+//type=1 for sending email completing the personal form
+//type=2 for sending email completing the research form
+const sendMail = async (email, lang, type, firstName, lastName, wa) => {
 
-    let options
+    let options = {
+      to: email,
+      replyTo: "furqon@kudoku.id",
+      textEncoding: "base64",
+    }
 
     if (lang === 'id') {
-      options = {
-        to: email,
-        replyTo: "furqon@kudoku.id",
-        subject: "Hello ASU",
-        text: "This email is sent from the Kudoku team",
-        html: `<p>🙋🏻‍♀️  Halo orang Indo</p>`,
-        textEncoding: "base64",
+      options.text = "Email ini dikirim dari tim Kudoku"
+
+      if (type === 1) {
+        options.subject = `Bahasa Indonesia Type 1`
+        options.html = bahasaType1(firstName, lastName, wa)
+      }
+
+      else if (type === 2) {
+        options.subject = `Bahasa Indonesia Type 2`
+        options.html = bahasaType2(firstName, lastName, wa)
       }
     }
-    
+
     else if (lang === 'en') {
-      options = {
-        to: email,
-        replyTo: "furqon@kudoku.id",
-        subject: "Hello (english form)",
-        text: "This email is sent from the Kudoku team",
-        html: `<p>🙋🏻‍♀️  Hello english man</p>`,
-        textEncoding: "base64",
+      options.text = "This email is sent from the Kudoku team"
+
+      if (type === 1) {
+        options.subject = `English Type 1`
+        options.html = englishType1(firstName, lastName, wa)
+      }
+
+      else if (type === 2) {
+        options.subject = `English Type 2`
+        options.html = englishType2(firstName, lastName, wa)
       }
     }
 

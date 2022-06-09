@@ -1,4 +1,4 @@
-# typeform-webhook-personal-form
+# typeform-webhook
 This repository is for the Kudoku's personal form Typeform webhook.
 
 Project maintainers and builders: *Furqon Wilogo*
@@ -65,6 +65,11 @@ email/
     └── token.json
 ...
 │  
+routes/
+    ├── PersonalData.js
+    └── ResearchForm.js
+...
+│  
 ...
 src/
     ├── datacleaning.js
@@ -83,6 +88,7 @@ index.js
 - `src/db.js` is about connecting and making query for the SQL database.
 - `src/mailchimp.js` is about MailChimp API
 - `src/typeformsignature.js` has functions to verified that the webhook is secure and comes from TypeForm itself.
+- The `routes/` folder handles all the routing for the respective webhooks.
 
 
 # Gmail API
@@ -92,7 +98,19 @@ To properly connect the gmail API, first read [this](https://www.labnol.org/goog
 3. Sign in using your google account that has permission to the gmail API
 4. You then will be redirected
 5. Copy the code given. The url should be like this `https://localhost?code=__code__&scope=xxx`
-6. Paste the code to the enviroment variable `CODE_FROM_GOOGLE`
+6. Paste the code to the enviroment variable `GMAIL_CODE`
 7. Then run `token.js`
 8. You will then have `token.json` automatically generated
 9. Then it will work as normal
+
+# Routes
+
+There will be two routes:
+1. `/personal-data-webhook`
+2. `/research-form-webhook`
+
+## /personal-data-webhook
+This routes handle all the webhooks coming from the personal form in TypeForm.
+
+## /research-form-webhook
+This route handle all the webhook coming from the research form in TypeForm.

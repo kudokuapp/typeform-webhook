@@ -1,13 +1,15 @@
 const express = require("express")
 const router = express.Router()
 
-// app.use(express.raw({ type: "application/json" }))
-
 const verifySignature = require('../src/typeformsignature')
-const dbQuery = require('../src/db')
+const { dbQueryUsersData } = require('../src/db')
 const sendMailChimp = require('../src/mailchimp')
 const dataCleaning = require('../src/datacleaning')
 const sendMail = require("../email/email")
+
+router.get("/", (req, res) => {
+    res.send("it's live!")
+})
 
 router.post("/", async(req, res) => {
     console.log("~> webhook received")
@@ -27,17 +29,17 @@ router.post("/", async(req, res) => {
     if (event_type === "form_response") {
         const { firstName, lastName, email, wa } = dataCleaning(form_response.answers[0].text, form_response.answers[1].text, form_response.answers[2].email, form_response.hidden.wa)
 
-        dbQuery(firstName, lastName, email, wa)
+        dbQueryUsersData(firstName, lastName, email, wa)
         
         sendMailChimp(firstName, lastName, email, wa)
 
         if (form_response.form_id === "PZR271ql") {
-            sendMail(email, 'en')
+            sendMail(email, 'en', type=1, firstName, lastName, wa)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           } 
         else if (form_response.form_id === "Aq7EqLjd") {
-            sendMail(email, 'id')
+            sendMail(email, 'id', type=1, firstName, lastName, wa)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           }

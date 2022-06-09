@@ -25,7 +25,7 @@ const pool = new Pool({
 
 
 
-const dbQuery = (firstName, lastName, email, wa) => {
+const dbQueryUsersData = (firstName, lastName, email, wa) => {
 
   const today = new Date()
   const todayDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
@@ -40,4 +40,19 @@ const dbQuery = (firstName, lastName, email, wa) => {
     })
 }
 
-module.exports = dbQuery
+const dbQueryUsersAnswers = (firstName, lastName, email, wa) => {
+
+  const today = new Date()
+  const todayDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`
+
+  const queryString = `INSERT INTO users_data (firstname, lastname, email, whatsapp, registerdate) VALUES ($1, $2, $3, $4, $5)`
+
+  const arr = [firstName, lastName, email, wa, todayDate]
+
+  pool.query (queryString, arr, 
+    (err) => {
+      if (err) { console.error(err) }
+    })
+}
+
+module.exports = {dbQueryUsersData, dbQueryUsersAnswers}

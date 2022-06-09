@@ -1,7 +1,8 @@
 const express = require("express")
 const app = express()
 app.use(express.raw({ type: "application/json" }))
-const personalFormRoute = require("./routes/PersonalForm")
+const personalDataRoute = require("./routes/PersonalData")
+// const researchFormRoute = require("./routes/ResearchForm")
 
 const port = process.env.PORT || 3000
 
@@ -11,4 +12,7 @@ const listener = app.listen(port, () => {
 
 
 //Personal Form Webhooks
-app.use("/personal-form-webhook", personalFormRoute)
+app.use("/personal-data-webhook", personalDataRoute)
+
+//Research Form Webhooks
+// app.use("/research-form-webhook", researchFormRoute)

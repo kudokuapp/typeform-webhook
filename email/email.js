@@ -57,7 +57,7 @@ const sendMail = async (email, lang, type, firstName, lastName, wa) => {
     }
 
     if (lang === 'id') {
-      options.text = "Email ini dikirim dari tim Kudoku"
+      // options.text = "Email ini dikirim dari tim Kudoku"
 
       if (type === 1) {
         options.subject = `Bahasa Indonesia Type 1`
@@ -71,7 +71,7 @@ const sendMail = async (email, lang, type, firstName, lastName, wa) => {
     }
 
     else if (lang === 'en') {
-      options.text = "This email is sent from the Kudoku team"
+      // options.text = "This email is sent from the Kudoku team"
 
       if (type === 1) {
         options.subject = `English Type 1`

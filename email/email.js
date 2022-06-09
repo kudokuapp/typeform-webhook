@@ -61,12 +61,12 @@ const sendMail = async (email, lang, type, firstName, lastName, wa) => {
 
       if (type === 1) {
         options.subject = `Bahasa Indonesia Type 1`
-        options.html = bahasaType1(firstName, lastName, wa)
+        options.html = bahasaType1(firstName, lastName, email, wa)
       }
 
       else if (type === 2) {
         options.subject = `Bahasa Indonesia Type 2`
-        options.html = bahasaType2(firstName, lastName, wa)
+        options.html = bahasaType2(firstName, lastName, email, wa)
       }
     }
 
@@ -75,12 +75,12 @@ const sendMail = async (email, lang, type, firstName, lastName, wa) => {
 
       if (type === 1) {
         options.subject = `English Type 1`
-        options.html = englishType1(firstName, lastName, wa)
+        options.html = englishType1(firstName, lastName, email, wa)
       }
 
       else if (type === 2) {
         options.subject = `English Type 2`
-        options.html = englishType2(firstName, lastName, wa)
+        options.html = englishType2(firstName, lastName, email, wa)
       }
     }
 

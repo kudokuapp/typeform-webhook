@@ -37,12 +37,12 @@ router.post("/", async(req, res) => {
         dbQueryUsersData(firstName, lastName, age, gender, email, wa)
 
         if (form_response.form_id === "PZR271ql") {
-            sendMailType1(email, 'en', type=1, firstName, lastName, age, gender, wa)
+            sendMailType1(email, 'en', firstName, lastName, age, gender, wa)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           } 
         else if (form_response.form_id === "Aq7EqLjd") {
-            sendMailType1(email, 'id', type=1, firstName, lastName, age, gender, wa)
+            sendMailType1(email, 'id', firstName, lastName, age, gender, wa)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           }

@@ -51,19 +51,20 @@ const sendMailType1 = async (email, lang, firstName, lastName, age, gender, wa) 
 
     let options = {
       to: email,
+      from: "Furqon x Kudoku <furqon@kudoku.id>",
       replyTo: "furqon@kudoku.id",
-      textEncoding: "base64",
+      textEncoding: "base64"
     }
 
     if (lang === 'en') {
       // options.text = "This email is sent from the Kudoku team"
-      options.subject = `English Type 1`
+      options.subject = `Hi, ${firstName}! Let's meet Kudoku 😎`
       options.html = englishType1(firstName, lastName, age, gender, email, wa)
     }
 
     else if (lang === 'id') {
       // options.text = "Email ini dikirim dari tim Kudoku"
-      options.subject = `Bahasa Indonesia Type 1`
+      options.subject = `Hi, ${firstName}! Kenalan sama Kudoku yuk 😎`
       options.html = bahasaType1(firstName, lastName, age, gender, email, wa)
     }
 
@@ -76,20 +77,21 @@ const sendMailType1 = async (email, lang, firstName, lastName, age, gender, wa) 
 const sendMailType2 = async (email, lang, firstName, ID) => {
   let options = {
     to: email,
+    from: "Furqon x Kudoku <furqon@kudoku.id>",
     replyTo: "furqon@kudoku.id",
-    textEncoding: "base64",
+    textEncoding: "base64"
   }
 
   if (lang === 'en') {
     // options.text = "This email is sent from the Kudoku team"
-    options.subject = `English Type 2`
+    options.subject = `Thanks for joining the Kudoku waitlist 🤩`
     options.html = englishType2(firstName, ID)
   }
 
 
   else if (lang === 'id') {
     // options.text = "Email ini dikirim dari tim Kudoku"
-    options.subject = `Bahasa Indonesia Type 2`
+    options.subject = `Terima kasih sudah daftar waiting-list Kudoku 🤩`
     options.html = bahasaType2(firstName, ID)
   }
 

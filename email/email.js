@@ -58,13 +58,13 @@ const sendMailType1 = async (email, lang, firstName, lastName, age, gender, wa) 
     if (lang === 'en') {
       // options.text = "This email is sent from the Kudoku team"
       options.subject = `English Type 1`
-      options.html = englishType1(firstName, lastName, email, age, gender, wa)
+      options.html = englishType1(firstName, lastName, age, gender, email, wa)
     }
 
     else if (lang === 'id') {
       // options.text = "Email ini dikirim dari tim Kudoku"
       options.subject = `Bahasa Indonesia Type 1`
-      options.html = bahasaType1(firstName, lastName, email, age, gender, wa)
+      options.html = bahasaType1(firstName, lastName, age, gender, email, wa)
     }
 
     const messageId = await prepareMail(options)

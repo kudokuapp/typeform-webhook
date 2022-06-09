@@ -51,7 +51,7 @@ const sendMailType1 = async (email, lang, firstName, lastName, age, gender, wa) 
 
     let options = {
       to: email,
-      from: "Furqon x Kudoku <furqon@kudoku.id>",
+      from: "Furqon @ Kudoku <furqon@kudoku.id>",
       replyTo: "furqon@kudoku.id",
       textEncoding: "base64"
     }
@@ -77,7 +77,7 @@ const sendMailType1 = async (email, lang, firstName, lastName, age, gender, wa) 
 const sendMailType2 = async (email, lang, firstName, ID) => {
   let options = {
     to: email,
-    from: "Furqon x Kudoku <furqon@kudoku.id>",
+    from: "Furqon @ Kudoku <furqon@kudoku.id>",
     replyTo: "furqon@kudoku.id",
     textEncoding: "base64"
   }

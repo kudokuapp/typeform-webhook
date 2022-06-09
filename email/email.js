@@ -46,7 +46,7 @@ const prepareMail = async (options) => {
 
 
 //send email using this
-//type=1 for sending email completing the personal form
+//type=1 for sending email completing the personal data form
 //type=2 for sending email completing the research form
 const sendMail = async (email, lang, type, firstName, lastName, wa) => {
 

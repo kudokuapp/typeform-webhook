@@ -21,7 +21,7 @@ const englishType1 = (firstName, lastName, email, wa) => {
         </p>
 
         <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
-            It is nice to see that you also have been wanting a personal finance app that can solve all of our problem.
+            It is nice to see that you also have been wanting a personal finance app that can solve all of our finance problems.
         </p>
         
         <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
@@ -29,7 +29,7 @@ const englishType1 = (firstName, lastName, email, wa) => {
         </p>
 
         <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
-            Anyway, you should completed the next form by now. But, just in case you want to finish it later, here's the link for you.
+            Anyway, you should completed the next form by now. But, just in case you want to finish it later, here's the link for you:
         </p>
         
         <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; padding: 1em;" align="center">

@@ -33,16 +33,18 @@ router.post("/", async(req, res) => {
             form_response.answers[3].choice.label, 
             form_response.answers[4].email, 
             form_response.hidden.wa)
+        const genderUnclean = form_response.answers[3].choice.label
+        const waUnclean = form_response.hidden.wa
 
         dbQueryUsersData(firstName, lastName, age, gender, email, wa)
 
         if (form_response.form_id === "PZR271ql") {
-            sendMailType1(email, 'en', firstName, lastName, age, gender, wa)
+            sendMailType1(email, 'en', firstName, lastName, age, genderUnclean, waUnclean)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           } 
         else if (form_response.form_id === "Aq7EqLjd") {
-            sendMailType1(email, 'id', firstName, lastName, age, gender, wa)
+            sendMailType1(email, 'id', firstName, lastName, age, genderUnclean, waUnclean)
               .then((messageId) => console.log("Message sent successfully:", messageId))
               .catch((err) => console.error(err))
           }

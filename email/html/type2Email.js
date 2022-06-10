@@ -28,7 +28,7 @@ const englishType2 = (firstName, ID) => {
 
     const IDVERSION = checkIDVERSION(ID)
 
-    const WALINK = ``
+    const WALINK = `https://chat.whatsapp.com/DI3Bpk9Lsu3B1u4C95oRAQ`
 
     return (
         `<div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; max-width: 700px; margin: 0 auto;">
@@ -93,7 +93,7 @@ const bahasaType2 = (firstName, ID) => {
 
     const IDVERSION = checkIDVERSION(ID)
 
-    const WALINK = ``
+    const WALINK = `https://chat.whatsapp.com/DI3Bpk9Lsu3B1u4C95oRAQ`
 
     return (
         `<div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; max-width: 700px; margin: 0 auto;">

@@ -39,13 +39,13 @@ router.post("/", async(req, res) => {
         dbQueryIfUsersExists(email).then((data) => {
             let ID = data.id
 
-            if (form_response.form_id === "ZWatAGlx") {
+            if (form_response.form_id === "PZR271ql") {
                 sendMailType3(email, 'en', firstName, ID)
                     .then((messageId) => console.log("Message sent successfully:", messageId))
                     .catch((err) => console.error(err))
             }
 
-            else if (form_response.form_id === "U9a430un") {
+            else if (form_response.form_id === "Aq7EqLjd") {
                 sendMailType3(email, 'id', firstName, ID)
                     .then((messageId) => console.log("Message sent successfully:", messageId))
                     .catch((err) => console.error(err))

@@ -2,7 +2,6 @@ const dotenv = require('dotenv')
 dotenv.config()
 const Pool = require("pg").Pool
 const fs = require("fs")
-const { sendMailType2 } = require("../email/email")
 
 //database credentials
 const { DB_USERNAME: dbUser,

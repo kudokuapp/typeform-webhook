@@ -1,5 +1,5 @@
 {
-  "name": "typeform-webhook-personal-form",
+  "name": "typeform-webhook",
   "version": "1.0.0",
   "description": "This repository is for the Kudoku's personal form Typeform webhook.",
   "main": "index.js",

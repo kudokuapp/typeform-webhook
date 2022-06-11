@@ -39,7 +39,7 @@ router.post("/", async(req, res) => {
             form_response.token
             )
 
-        sendMailChimp(firstName, lastName, age, gender, occupation, email, wa)
+        // sendMailChimp(firstName, lastName, age, gender, occupation, email, wa)
 
         dbQueryIfUsersExists(email).then((data) => {
             let ID = data.id

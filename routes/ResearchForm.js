@@ -57,29 +57,22 @@ router.post("/", async(req, res) => {
                       .catch((err) => console.error(err))
                 }
 
-            })
+            }, dbQueryIfUsersExists(email).then((data) => {
+                let ID = data.id
+                
+                if (form_response.form_id === "ZWatAGlx") {
+                    sendMailType3(email, 'en', firstName, ID)
+                        .then((messageId) => console.log("Message sent successfully:", messageId))
+                        .catch((err) => console.error(err))
+                }
+
+                else if (form_response.form_id === "U9a430un") {
+                    sendMailType3(email, 'id', firstName, ID)
+                        .then((messageId) => console.log("Message sent successfully:", messageId))
+                        .catch((err) => console.error(err))
+                }
+            }).catch((err) => console.error(err)))
             .catch((err) => console.error(err))
-            .then(
-                dbQueryIfUsersExists(email)
-                    .then((data) => {
-                        let ID = data.id
-
-                        if (form_response.form_id === "ZWatAGlx") {
-                            sendMailType3(email, 'en', firstName, ID)
-                                .then((messageId) => console.log("Message sent successfully:", messageId))
-                                .catch((err) => console.error(err))
-                        }
-
-                        else if (form_response.form_id === "U9a430un") {
-                            sendMailType3(email, 'id', firstName, ID)
-                                .then((messageId) => console.log("Message sent successfully:", messageId))
-                                .catch((err) => console.error(err))
-                        }
-                    })
-                    .catch((err) => console.error(err))
-            )
-
-
     }
 })
 

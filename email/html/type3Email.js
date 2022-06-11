@@ -31,7 +31,7 @@ const englishType3 = (firstName, ID) => {
     const WALINK = `https://chat.whatsapp.com/DI3Bpk9Lsu3B1u4C95oRAQ`
 
     return (
-        `This is email type 3`
+        `This is email type 3 ${ID} out of ${IDVERSION}`
     )
 }
 
@@ -42,7 +42,7 @@ const bahasaType3 = (firstName, ID) => {
     const WALINK = `https://chat.whatsapp.com/DI3Bpk9Lsu3B1u4C95oRAQ`
 
     return (
-        `This is email type 3`
+        `This is email type 3 ${ID} out of ${IDVERSION}`
     )
 }
 

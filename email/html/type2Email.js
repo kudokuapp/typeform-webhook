@@ -49,9 +49,12 @@ const englishType2 = (firstName, ID) => {
             </p>
     
             <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
-                Thank you so much for joining <strong style="font-weight: bolder; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;">Kudoku</strong> waiting list!<br>
-                📣 You're officially a Kudos No. ${ID} out of ${IDVERSION}! 🥳 🎉
+                Thank you so much for joining <strong style="font-weight: bolder; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;">Kudoku</strong> waiting list!
             </p>
+
+            <h1 style="font-size: 1.71428571rem; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.28571429em; margin: -0.14285714em 0 0.83em; padding: 0;" align="center">
+                📣 You're officially a Kudos No. ${ID} out of ${IDVERSION}! 🥳 🎉
+            </h1>
     
             <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
                 If you've got friends or colleagues who would also like Kudoku, we're super happy if you spread the word.
@@ -114,9 +117,12 @@ const bahasaType2 = (firstName, ID) => {
             </p>
     
             <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
-                Terima kasih banget udah ikut <strong style="font-weight: bolder; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;">Kudoku</strong> waiting list!<br>
-                📣 You're officially a Kudos No. ${ID} out of ${IDVERSION}! 🥳 🎉
+                Terima kasih banget udah ikut <strong style="font-weight: bolder; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;">Kudoku</strong> waiting list!
             </p>
+
+            <h1 style="font-size: 1.71428571rem; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.28571429em; margin: -0.14285714em 0 0.83em; padding: 0;" align="center">
+             📣 You're officially a Kudos No. ${ID} out of ${IDVERSION}! 🥳 🎉
+            </h1>
     
             <p style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; line-height: 1.4285em; font-size: 1rem; color: rgba(0,0,0,0.87); margin: 0 0 1em;">
                 Kalo lo punya temen/siapapun yang kira-kira suka banget sama Kudoku, boleh tolong kasih tau dia ya hehe.

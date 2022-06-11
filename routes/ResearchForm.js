@@ -41,38 +41,37 @@ router.post("/", async(req, res) => {
 
         // sendMailChimp(firstName, lastName, age, gender, occupation, email, wa)
 
-        dbQueryUsersAnswers(firstName, lastName, age, gender, occupation, email, wa, formToken)
-            .then((data)=>{
-                let ID = data.id
+        dbQueryIfUsersExists(email).then((data) => {
+            let ID = data.id
 
-                if (form_response.form_id === "ZWatAGlx") {
-                    sendMailType2(email, 'en', firstName, ID)
-                      .then((messageId) => console.log("Message sent successfully:", messageId))
-                      .catch((err) => console.error(err))
-                }
+            if (form_response.form_id === "ZWatAGlx") {
+                sendMailType3(email, 'en', firstName, ID)
+                    .then((messageId) => console.log("Message sent successfully:", messageId))
+                    .catch((err) => console.error(err))
+            }
 
-                else if (form_response.form_id === "U9a430un") {
-                    sendMailType2(email, 'id', firstName, ID)
-                      .then((messageId) => console.log("Message sent successfully:", messageId))
-                      .catch((err) => console.error(err))
-                }
+            else if (form_response.form_id === "U9a430un") {
+                sendMailType3(email, 'id', firstName, ID)
+                    .then((messageId) => console.log("Message sent successfully:", messageId))
+                    .catch((err) => console.error(err))
+            }
 
-            }, dbQueryIfUsersExists(email).then((data) => {
-                let ID = data.id
-                
-                if (form_response.form_id === "ZWatAGlx") {
-                    sendMailType3(email, 'en', firstName, ID)
-                        .then((messageId) => console.log("Message sent successfully:", messageId))
-                        .catch((err) => console.error(err))
-                }
+        }, dbQueryUsersAnswers(firstName, lastName, age, gender, occupation, email, wa, formToken).then((data) => {
+            let ID = data.id
 
-                else if (form_response.form_id === "U9a430un") {
-                    sendMailType3(email, 'id', firstName, ID)
-                        .then((messageId) => console.log("Message sent successfully:", messageId))
-                        .catch((err) => console.error(err))
-                }
-            }).catch((err) => console.error(err)))
-            .catch((err) => console.error(err))
+            if (form_response.form_id === "ZWatAGlx") {
+                sendMailType2(email, 'en', firstName, ID)
+                  .then((messageId) => console.log("Message sent successfully:", messageId))
+                  .catch((err) => console.error(err))
+            }
+            
+            else if (form_response.form_id === "U9a430un") {
+                sendMailType2(email, 'id', firstName, ID)
+                  .then((messageId) => console.log("Message sent successfully:", messageId))
+                  .catch((err) => console.error(err))
+            }
+
+        }).catch(err => console.error(err))).catch(err => console.error(err))
     }
 })
 

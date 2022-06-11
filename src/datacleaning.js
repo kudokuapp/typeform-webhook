@@ -27,13 +27,21 @@ const cleanGender = (arg) => {
         case 'Male':
             variable = 'M'
             break;
+        case 'Pria':
+            variable = 'M'
+            break;
         case 'Female':
+            variable = 'F'
+            break;
+        case 'Wanita':
             variable = 'F'
             break;
         case 'Other':
             variable = 'X'
             break;
-
+        case 'Lainnya':
+            variable = 'X'
+            break;
         default:
             variable = 'X'
             break;

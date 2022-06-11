@@ -3,7 +3,7 @@ This repository is for the Kudoku's personal form Typeform webhook.
 
 Project maintainers and builders: *Furqon Wilogo*
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8caa9901-e270-4b36-a4c1-d6749ad03b06/deploy-status)](https://app.netlify.com/sites/poetic-frangollo-d86447/deploys)
+[![DigitalOcean](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://typeform-webhook-lzjoq.ondigitalocean.app/)
 
 ---
 

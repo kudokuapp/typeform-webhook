@@ -10,6 +10,9 @@ const listener = app.listen(port, () => {
     console.log(`Your app is listening on port ${listener.address().port}`)
 })
 
+app.get("/", (req, res) => {
+    res.send("it's live!")
+})
 
 //Personal Form Webhooks
 app.use("/personal-data-webhook", personalDataRoute)

@@ -2,10 +2,10 @@ const express = require("express")
 const router = express.Router()
 
 const verifySignature = require('../src/typeformsignature')
-const { dbQueryUsersAnswers } = require('../src/db')
+const { dbQueryUsersAnswers, dbQueryIfUsersExists } = require('../src/db')
 const sendMailChimp = require('../src/mailchimp')
 const { dataCleaning2 } = require('../src/datacleaning')
-const { sendMailType2 } = require("../email/email")
+const { sendMailType2, sendMailType3 } = require("../email/email")
 
 router.get("/", (req, res) => {
     res.send("it's live!")
@@ -27,6 +27,8 @@ router.post("/", async(req, res) => {
 
     //Filter response events only
     if (event_type === "form_response") {
+        const form_id = form_response.form_id
+
         const { firstName, lastName, age, gender, occupation, email, wa, formToken } = dataCleaning2(
             form_response.hidden.firstname,
             form_response.hidden.lastname,
@@ -44,19 +46,39 @@ router.post("/", async(req, res) => {
             .then((data)=>{
                 let ID = data.id
 
-                if (form_response.form_id === "ZWatAGlx") {
+                if (form_id === "ZWatAGlx") {
                     sendMailType2(email, 'en', firstName, ID)
                       .then((messageId) => console.log("Message sent successfully:", messageId))
                       .catch((err) => console.error(err))
                 }
 
-                else if (form_response.form_id === "U9a430un") {
+                else if (form_id === "U9a430un") {
                     sendMailType2(email, 'id', firstName, ID)
                       .then((messageId) => console.log("Message sent successfully:", messageId))
                       .catch((err) => console.error(err))
                 }
 
-            }).catch((err) => console.error(err))
+            })
+            .catch((err) => console.error(err))
+            .then(
+                dbQueryIfUsersExists(email)
+                    .then((data) => {
+                        let ID = data.id
+
+                        if (form_id === "ZWatAGlx") {
+                            sendMailType3(email, 'en', firstName, ID)
+                                .then((messageId) => console.log("Message sent successfully:", messageId))
+                                .catch((err) => console.error(err))
+                        }
+
+                        else if (form_id === "U9a430un") {
+                            sendMailType3(email, 'id', firstName, ID)
+                                .then((messageId) => console.log("Message sent successfully:", messageId))
+                                .catch((err) => console.error(err))
+                        }
+                    })
+                    .catch((err) => console.error(err))
+            )
 
 
     }

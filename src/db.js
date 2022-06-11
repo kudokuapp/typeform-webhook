@@ -2,6 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const Pool = require("pg").Pool
 const fs = require("fs")
+const { sendMailType2 } = require("../email/email")
 
 //database credentials
 const { DB_USERNAME: dbUser,
@@ -67,4 +68,24 @@ const dbQueryUsersAnswers = (firstName, lastName, age, gender, occupation, email
     })
 }
 
-module.exports = {dbQueryUsersData, dbQueryUsersAnswers}
+const dbQueryIfUsersExists = (email) => {
+
+  const queryString = `SELECT * FROM users_final WHERE email=$1`
+
+  const arr = [email]
+
+  return new Promise(function (resolve, reject){
+      pool.query(queryString, arr, (err, res) => {
+          if (err) {
+              console.error(err)
+              reject(0)
+          }
+      
+          else {
+              resolve(res.rows[0])
+          }
+        })
+    })
+}
+
+module.exports = {dbQueryUsersData, dbQueryUsersAnswers, dbQueryIfUsersExists}

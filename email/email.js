@@ -5,6 +5,7 @@ const MailComposer = require('nodemailer/lib/mail-composer')
 const tokens = require('../secure/token.json')
 const { englishType1, bahasaType1 } = require('./html/type1Email')
 const { englishType2, bahasaType2 } = require('./html/type2Email')
+const { englishType3, bahasaType3 } = require('./html/type3Email')
 
 const getGmailService = () => {
 
@@ -100,4 +101,31 @@ const sendMailType2 = async (email, lang, firstName, ID) => {
   return messageId
 }
 
-module.exports = {sendMailType1, sendMailType2}
+//type=3 if users already exist in the database and send a duplicate form
+const sendMailType3 = async (email, lang, firstName, ID) => {
+  let options = {
+    to: email,
+    from: "Furqon @ Kudoku <furqon@kudoku.id>",
+    replyTo: "furqon@kudoku.id",
+    textEncoding: "base64"
+  }
+
+  if (lang === 'en') {
+    // options.text = "This email is sent from the Kudoku team"
+    options.subject = `Hmm it seems like you already a Kudos! 🤔`
+    options.html = englishType3(firstName, ID)
+  }
+
+
+  else if (lang === 'id') {
+    // options.text = "Email ini dikirim dari tim Kudoku"
+    options.subject = `Hmm nampaknya kamu sudah menjadi Kudos! 🤔`
+    options.html = bahasaType3(firstName, ID)
+  }
+
+  const messageId = await prepareMail(options)
+  
+  return messageId
+}
+
+module.exports = {sendMailType1, sendMailType2, sendMailType3}

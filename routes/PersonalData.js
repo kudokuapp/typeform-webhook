@@ -2,9 +2,9 @@ const express = require("express")
 const router = express.Router()
 
 const verifySignature = require('../src/typeformsignature')
-const { dbQueryUsersData } = require('../src/db')
+const { dbQueryUsersData, dbQueryIfUsersExists } = require('../src/db')
 const { dataCleaning1 } = require('../src/datacleaning')
-const { sendMailType1 } = require("../email/email")
+const { sendMailType1, sendMailType3 } = require("../email/email")
 
 router.get("/", (req, res) => {
     res.send("it's live!")
@@ -36,18 +36,33 @@ router.post("/", async(req, res) => {
         const genderUnclean = form_response.answers[3].choice.label
         const waUnclean = form_response.hidden.wa
 
-        dbQueryUsersData(firstName, lastName, age, gender, email, wa)
+        dbQueryIfUsersExists(email).then((data) => {
+            let ID = data.id
 
-        if (form_response.form_id === "PZR271ql") {
-            sendMailType1(email, 'en', firstName, lastName, age, genderUnclean, waUnclean)
-              .then((messageId) => console.log("Message sent successfully:", messageId))
-              .catch((err) => console.error(err))
-          } 
-        else if (form_response.form_id === "Aq7EqLjd") {
-            sendMailType1(email, 'id', firstName, lastName, age, genderUnclean, waUnclean)
-              .then((messageId) => console.log("Message sent successfully:", messageId))
-              .catch((err) => console.error(err))
-          }
+            if (form_response.form_id === "ZWatAGlx") {
+                sendMailType3(email, 'en', firstName, ID)
+                    .then((messageId) => console.log("Message sent successfully:", messageId))
+                    .catch((err) => console.error(err))
+            }
+
+            else if (form_response.form_id === "U9a430un") {
+                sendMailType3(email, 'id', firstName, ID)
+                    .then((messageId) => console.log("Message sent successfully:", messageId))
+                    .catch((err) => console.error(err))
+            }
+
+        }, dbQueryUsersData(firstName, lastName, age, gender, email, wa).then(() => {
+            if (form_response.form_id === "PZR271ql") {
+                sendMailType1(email, 'en', firstName, lastName, age, genderUnclean, waUnclean)
+                  .then((messageId) => console.log("Message sent successfully:", messageId))
+                  .catch((err) => console.error(err))
+              } 
+            else if (form_response.form_id === "Aq7EqLjd") {
+                sendMailType1(email, 'id', firstName, lastName, age, genderUnclean, waUnclean)
+                  .then((messageId) => console.log("Message sent successfully:", messageId))
+                  .catch((err) => console.error(err))
+              }
+        }).catch(err => console.error(err))).catch(err => console.error(err))
     }
 })
 

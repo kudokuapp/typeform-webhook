@@ -39,10 +39,18 @@ const dbQueryUsersData = (firstName, lastName, age, gender, email, wa) => {
 
   const arr = [firstName, lastName, age, gender, email, wa, todayDate]
 
-  pool.query (queryString, arr, 
-    (err) => {
-      if (err) { console.error(err) }
-    })
+  return new Promise(function (resolve, reject){
+    pool.query(queryString, arr, (err, res) => {
+        if (err) {
+            console.error(err)
+            reject(0)
+        }
+    
+        else {
+            resolve(res.rows[0])
+        }
+      })
+  })
 }
 
 const dbQueryUsersAnswers = (firstName, lastName, age, gender, occupation, email, wa, formToken) => {

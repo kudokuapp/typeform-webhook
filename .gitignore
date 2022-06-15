@@ -3,4 +3,3 @@ node_modules/
 .vscode/
 Kudoku.session.sql
 test.js
-.env

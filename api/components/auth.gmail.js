@@ -8,9 +8,9 @@ dotenv.config()
 const { google } = require('googleapis')
 
 const { GMAIL_CLIENT_SECRET: client_secret, 
-        GMAIL_CLIENT_ID: client_id, 
-        GMAIL_REDIRECT_URIS: redirect_uris,
-        GMAIL_SCOPES: gmail_scopes } = process.env
+        GMAIL_CLIENT_ID: client_id } = process.env
+const gmail_scopes = 'https://www.googleapis.com/auth/gmail.send'
+const redirect_uris = 'http://localhost'
 
 const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris)
 

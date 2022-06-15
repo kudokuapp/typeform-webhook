@@ -1,9 +1,9 @@
 # typeform-webhook
-This repository is for the Kudoku's personal form Typeform webhook.
+This repository is for the Kudoku's Typeform webhook.
 
 Project maintainers and builders: *Furqon Wilogo*
 
-[![DigitalOcean](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://typeform-webhook-lzjoq.ondigitalocean.app/)
+[![DigitalOcean](https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg)](https://hammerhead-app-si5rm.ondigitalocean.app/)
 
 ---
 
@@ -15,35 +15,32 @@ Then, make a `.env` file on the **root** folder with the proper environment vari
 |            Variable               |         Provider          |
 | --------------------------------- | ------------------------- |
 | TYPEFORM_WEBHOOK_SECRET           | Typeform                  |
-| DB_USERNAME                       | DigitalOcean (postgreSQL) |
-| DB_PASSWORD                       | DigitalOcean (postgreSQL) |
-| DB_HOST                           | DigitalOcean (postgreSQL) |
-| DB_PORT                           | DigitalOcean (postgreSQL) |
-| DB_DATABASE                       | DigitalOcean (postgreSQL) |
+| PGUSER                            | DigitalOcean (postgreSQL) |
+| PGPASSWORD                        | DigitalOcean (postgreSQL) |
+| PGHOST                            | DigitalOcean (postgreSQL) |
+| PGPORT                            | DigitalOcean (postgreSQL) |
+| PGDATABASE                        | DigitalOcean (postgreSQL) |
+| CA_CERT                           | DigitalOcean (postgreSQL) |
 | MAILCHIMP_API_KEY                 | MailChimp                 |
 | MAILCHIMP_SERVER_PREFIX           | MailChimp                 |
 | MAILCHIMP_LISTS_ID                | MailChimp                 |
 | PORT                              | Local machine             |
 | GMAIL_CLIENT_ID                   | GMAIL API*                |
 | GMAIL_PROJECT_ID                  | GMAIL API*                |
-| GMAIL_AUTH_URI                    | GMAIL API*                |
-| GMAIL_TOKEN_URI                   | GMAIL API*                |
-| GMAIL_AUTH_PROVIDER_X509_CERT_URL | GMAIL API*                |
 | GMAIL_CLIENT_SECRET               | GMAIL API*                |
-| GMAIL_REDIRECT_URIS               | GMAIL API*                |
-| GMAIL_GMAIL_SCOPES                | GMAIL API*                |
 | GMAIL_CODE                        | GMAIL API**               |
 
-N.B.: Make sure you also have a `.crt` file for connecting the database. Place it under `secure/ca-certificate.crt`
+N.B.: Make sure you also have a `.crt` file for connecting the database. Place it under the environment variable `CA_CERT`. Look for 'multi-line dotenv support'.
 
 *You get this the first time setting up the GMAIL API.
 
-**You get this after running `auth.js`, go to the url, sign in with your respective google account that you set up for the GMAIL API, then it will be redirected to the `REDIRECT_URIS` with code in the URL Parameters. You then copy the code and past it into `CODE_FROM_GOOGLE`.
+**You get this after running `auth.gmail.js`, go to the url, sign in with your respective google account that you set up for the GMAIL API, then it will be redirected to the localhost with code in the URL Parameters. You then copy the code and past it into `GMAIL_CODE`.
 
 
 Then, using `yarn`,
 ```
-yarn dev
+yarn build
+yarn start
 ```
 ---
 # APIs Used
@@ -56,50 +53,15 @@ We also used **PostgreSQL** that were provided by DigitalOcean.
 
 ---
 
-# Folders Structures
-```
-email/
-    ├── auth.js
-    ├── email.js
-    ├── token.js
-    └── token.json
-...
-│  
-routes/
-    ├── PersonalData.js
-    └── ResearchForm.js
-...
-│  
-...
-src/
-    ├── datacleaning.js
-    ├── db.js
-    ├── mailchimp.js
-    └── typeformsignature.js
-...
-│  
-...
-index.js
-```
-
-- The webhook initialized and run on `index.js`.
-- Every gmail related items will be on the `email/` folder.
-- `src/datacleaning.js` has functions to clean data coming in from the webhook.
-- `src/db.js` is about connecting and making query for the SQL database.
-- `src/mailchimp.js` is about MailChimp API
-- `src/typeformsignature.js` has functions to verified that the webhook is secure and comes from TypeForm itself.
-- The `routes/` folder handles all the routing for the respective webhooks.
-
-
 # Gmail API
 To properly connect the gmail API, first read [this](https://www.labnol.org/google-api-service-account-220405) and [this](https://developers.google.com/gmail/api/quickstart/nodejs). Then:
-1. Run `auth.js`
+1. Run `auth.gmail.js`
 2. Go to the URL
 3. Sign in using your google account that has permission to the gmail API
 4. You then will be redirected
 5. Copy the code given. The url should be like this `https://localhost?code=__code__&scope=xxx`
 6. Paste the code to the enviroment variable `GMAIL_CODE`
-7. Then run `token.js`
+7. Then run `token.gmail.js`
 8. You will then have `token.json` automatically generated
 9. Then it will work as normal
 

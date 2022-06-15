@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
 
-const verifySignature = require('../src/typeformsignature')
-const { dbQueryUsersData, dbQueryIfUsersExists } = require('../src/db')
-const { dataCleaning1 } = require('../src/datacleaning')
-const { sendMailType1, sendMailType3 } = require("../email/email")
+const verifySignature = require('../api/components/verifysignature')
+const { dbQueryUsersData, dbQueryIfUsersExists } = require('../api/database')
+const { dataCleaning1 } = require('../api/components/datacleaning')
+const sendMail = require("../api/gmail")
 
 router.get("/", (req, res) => {
     res.send("it's live!")
@@ -35,34 +35,40 @@ router.post("/", async(req, res) => {
             form_response.hidden.wa)
         const genderUnclean = form_response.answers[3].choice.label
         const waUnclean = form_response.hidden.wa
+        const form_id = form_response.form_id
 
         dbQueryIfUsersExists(email).then((data) => {
             let ID = data.id
 
-            if (form_response.form_id === "PZR271ql") {
-                sendMailType3(email, 'en', firstName, ID)
+            if (form_id === "PZR271ql") {
+                sendMail(3, 'en', email, firstName, lastName, age, genderUnclean, waUnclean, ID)
                     .then((messageId) => console.log("Message sent successfully:", messageId))
                     .catch((err) => console.error(err))
             }
 
-            else if (form_response.form_id === "Aq7EqLjd") {
-                sendMailType3(email, 'id', firstName, ID)
+            else if (form_id === "Aq7EqLjd") {
+                sendMail(3, 'id', email, firstName, lastName, age, genderUnclean, waUnclean, ID)
                     .then((messageId) => console.log("Message sent successfully:", messageId))
                     .catch((err) => console.error(err))
             }
 
-        }, dbQueryUsersData(firstName, lastName, age, gender, email, wa).then(() => {
-            if (form_response.form_id === "PZR271ql") {
-                sendMailType1(email, 'en', firstName, lastName, age, genderUnclean, waUnclean)
+        }, 
+        
+        dbQueryUsersData(firstName, lastName, age, gender, email, wa).then(() => {
+
+            if (form_id === "PZR271ql") {
+                sendMail(1, 'en', email, firstName, lastName, age, genderUnclean, waUnclean)
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))
-              } 
+            } 
             else if (form_response.form_id === "Aq7EqLjd") {
-                sendMailType1(email, 'id', firstName, lastName, age, genderUnclean, waUnclean)
+                sendMail(1, 'id', email, firstName, lastName, age, genderUnclean, waUnclean)
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))
-              }
-        }).catch(err => console.error(err))).catch(err => console.error(err))
+            }
+        })
+        .catch(err => console.error(err)))
+        .catch(err => console.error(err))
     }
 })
 

@@ -1,12 +1,11 @@
 const dotenv = require('dotenv')
 dotenv.config()
-const mailchimp = require("@mailchimp/mailchimp_marketing")
+const mailchimp = require('@mailchimp/mailchimp_marketing')
 
 //Mailchimp credentials
 const { MAILCHIMP_API_KEY: mailchimpAPI,
         MAILCHIMP_SERVER_PREFIX: mailchimpServer,
         MAILCHIMP_LISTS_ID: mailchimpList } = process.env
-
 
 
 //Initialize mailchimp

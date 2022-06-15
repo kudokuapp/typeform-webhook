@@ -8,15 +8,15 @@ const fs = require('fs')
 
 const { GMAIL_CLIENT_SECRET: client_secret, 
         GMAIL_CLIENT_ID: client_id, 
-        GMAIL_REDIRECT_URIS: redirect_uris,
         GMAIL_CODE: code } = process.env
+const redirect_uris = 'http://localhost'
 
 const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris)
 
 oAuth2Client
     .getToken(code)
     .then(({ tokens }) => {
-        fs.writeFileSync('./secure/token.json', JSON.stringify(tokens))
+        fs.writeFileSync('../../secure/token.json', JSON.stringify(tokens))
         console.log('Access token and refresh token stored to token.json')
     })
     .catch((err) => console.error(err));

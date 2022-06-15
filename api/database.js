@@ -1,7 +1,7 @@
 const dotenv = require('dotenv')
 dotenv.config()
+const fs = require('fs')
 const Pool = require("pg").Pool
-const fs = require("fs")
 
 //database credentials
 const { DB_USERNAME: dbUser,
@@ -95,4 +95,4 @@ const dbQueryIfUsersExists = (email) => {
     })
 }
 
-module.exports = {dbQueryUsersData, dbQueryUsersAnswers, dbQueryIfUsersExists}
+module.exports = { dbQueryUsersData, dbQueryUsersAnswers, dbQueryIfUsersExists }

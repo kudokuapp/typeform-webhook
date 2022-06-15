@@ -1,6 +1,6 @@
 const dotenv = require('dotenv')
 dotenv.config()
-const crypto = require("crypto")
+const crypto = require('crypto')
 
 const webhookSecret = process.env.TYPEFORM_WEBHOOK_SECRET
 

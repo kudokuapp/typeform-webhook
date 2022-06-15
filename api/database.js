@@ -64,7 +64,6 @@ const dbQueryUsersAnswers = (firstName, lastName, age, gender, occupation, email
   return new Promise(function (resolve, reject){
       pool.query(queryString, arr, (err, res) => {
           if (err) {
-              console.error(err)
               reject(0)
           }
       
@@ -84,7 +83,6 @@ const dbQueryIfUsersExists = (email) => {
   return new Promise(function (resolve, reject){
       pool.query(queryString, arr, (err, res) => {
           if (err) {
-              console.error(err)
               reject(0)
           }
       

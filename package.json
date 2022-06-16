@@ -7,7 +7,6 @@
   "scripts": {
     "gmail-auth": "node email/auth.js",
     "gmail-token": "node email/token.js",
-    "dev": "nodemon index.js",
     "start": "node index.js"
   },
   "repository": {

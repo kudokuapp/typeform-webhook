@@ -9,6 +9,7 @@ const port = process.env.PORT || 8080
 
 const listener = app.listen(port, () => {
     console.log(`Your app is listening on port ${listener.address().port}`)
+    console.log(process.env.TYPEFORM_WEBHOOK_SECRET)
 })
 
 app.get("/", (req, res) => {

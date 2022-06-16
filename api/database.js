@@ -42,7 +42,6 @@ const dbQueryUsersData = (firstName, lastName, age, gender, email, wa) => {
   return new Promise(function (resolve, reject){
     pool.query(queryString, arr, (err, res) => {
         if (err) {
-            console.error(err)
             reject(0)
         }
     

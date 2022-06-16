@@ -1,11 +1,11 @@
-const checkid = require('./checkid')
+const checkid = require('./checkid');
 
 const emailType3 = (lang, firstName, ID) => {
-    const IDVERSION = checkid(ID)
-    const WALINK = `https://chat.whatsapp.com/DI3Bpk9Lsu3B1u4C95oRAQ`
+  const IDVERSION = checkid(ID);
+  const WALINK = `https://chat.whatsapp.com/DI3Bpk9Lsu3B1u4C95oRAQ`;
 
-    if (lang === 'en') {
-        return (`
+  if (lang === 'en') {
+    return `
         <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; max-width: 700px; margin: 0 auto;">
             <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;" align="center">
                 <a href="https://kudoku.id" style="background-color: transparent; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; color: #4183c4; text-decoration: none;" rel="nofollow">
@@ -66,10 +66,9 @@ const emailType3 = (lang, firstName, ID) => {
                 </p>
             </div>
         </div>
-        `)
-    }
-    else if (lang === 'id') {
-        return (`
+        `;
+  } else if (lang === 'id') {
+    return `
         <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; max-width: 700px; margin: 0 auto;">
             <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;" align="center">
                 <a href="https://kudoku.id" style="background-color: transparent; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; color: #4183c4; text-decoration: none;" rel="nofollow">
@@ -130,10 +129,9 @@ const emailType3 = (lang, firstName, ID) => {
                 </p>
             </div>
         </div>
-        `)
-    }
-    else {
-        return (`
+        `;
+  } else {
+    return `
         <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; max-width: 700px; margin: 0 auto;">
             <div style="box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif;" align="center">
                 <a href="https://kudoku.id" style="background-color: transparent; box-sizing: inherit; font-family: Avenir, Helvetica, Arial, sans-serif; color: #4183c4; text-decoration: none;" rel="nofollow">
@@ -194,8 +192,8 @@ const emailType3 = (lang, firstName, ID) => {
                 </p>
             </div>
         </div>
-        `)
-    }
-}
+        `;
+  }
+};
 
-module.export = emailType3
+module.exports = emailType3;

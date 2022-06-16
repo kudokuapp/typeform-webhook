@@ -66,9 +66,7 @@ router.post("/", async(req, res) => {
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))
             }
-        })
-        .catch(err => console.error(err)))
-        .catch(err => console.error(err))
+        }).catch(err => console.error(err))).catch(err => console.error(err))
     }
 })
 

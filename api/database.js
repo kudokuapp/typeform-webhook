@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const Pool = require("pg").Pool;
+const fs = require("fs");
 
 //database credentials
 const {
@@ -20,8 +21,7 @@ const pool = new Pool({
   database: dbDatabase,
   ssl: {
     rejectUnauthorized: true,
-    ca: process.env.PGCACERTIFICATE
-    //fs.readFileSync(`./secure/ca-certificate.crt`).toString()
+    ca: fs.readFileSync(`../ca-certificate.crt`).toString()
   }
 });
 

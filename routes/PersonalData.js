@@ -37,16 +37,19 @@ router.post("/", async(req, res) => {
         const waUnclean = form_response.hidden.wa
         const form_id = form_response.form_id
 
+        const form_lang_en = "PZR271ql"
+        const form_lang_id = "Aq7EqLjd"
+
         dbQueryIfUsersExists(email).then((data) => {
             let ID = data.id
 
-            if (form_id === "PZR271ql") {
+            if (form_id === form_lang_en) {
                 sendMail(3, 'en', email, firstName, lastName, age, genderUnclean, waUnclean, ID)
                     .then((messageId) => console.log("Message sent successfully:", messageId))
                     .catch((err) => console.error(err))
             }
 
-            else if (form_id === "Aq7EqLjd") {
+            else if (form_id === form_lang_id) {
                 sendMail(3, 'id', email, firstName, lastName, age, genderUnclean, waUnclean, ID)
                     .then((messageId) => console.log("Message sent successfully:", messageId))
                     .catch((err) => console.error(err))
@@ -56,17 +59,19 @@ router.post("/", async(req, res) => {
         
         dbQueryUsersData(firstName, lastName, age, gender, email, wa).then(() => {
 
-            if (form_id === "PZR271ql") {
+            if (form_id === form_lang_en) {
                 sendMail(1, 'en', email, firstName, lastName, age, genderUnclean, waUnclean)
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))
             } 
-            else if (form_id === "Aq7EqLjd") {
+            else if (form_id === form_lang_id) {
                 sendMail(1, 'id', email, firstName, lastName, age, genderUnclean, waUnclean)
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))
             }
-        }).catch(err => console.error(err))).catch(err => console.error(err))
+        })
+        .catch(err => console.error(err)))
+        .catch(err => console.error(err))
     }
 })
 

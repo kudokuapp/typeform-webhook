@@ -40,20 +40,23 @@ router.post("/", async(req, res) => {
         )
         const form_id = form_response.form_id
 
+        const form_lang_en = "ZWatAGlx"
+        const form_lang_id = "U9a430un"
+
         sendMailChimp(firstName, lastName, age, gender, occupation, email, wa)
 
         dbQueryIfUsersExists(email).then((data) => {
             let ID = data.id
 
-            if (form_id === "ZWatAGlx") {
+            if (form_id === form_lang_en) {
                 sendMail(3, 'en', email, firstName, lastName, age, gender, wa, ID)
-                    .then((messageId) => console.log("Message sent successfully:", messageId))
+                    .then((messageId) => console.log(`Message sent successfully: ${messageId}`))
                     .catch((err) => console.error(err))
             }
 
-            else if (form_id === "U9a430un") {
+            else if (form_id === form_lang_id) {
                 sendMail(3, 'id', email, firstName, lastName, age, gender, wa, ID)
-                    .then((messageId) => console.log("Message sent successfully:", messageId))
+                    .then((messageId) => console.log(`Message sent successfully: ${messageId}`))
                     .catch((err) => console.error(err))
             }
 
@@ -62,15 +65,15 @@ router.post("/", async(req, res) => {
         dbQueryUsersAnswers(firstName, lastName, age, gender, occupation, email, wa, formToken).then((data) => {
             let ID = data.id
 
-            if (form_id === "ZWatAGlx") {
+            if (form_id === form_lang_en) {
                 sendMail(2, 'en', email, firstName, lastName, age, gender, wa, ID)
-                  .then((messageId) => console.log("Message sent successfully:", messageId))
+                  .then((messageId) => console.log(`Message sent successfully: ${messageId}`))
                   .catch((err) => console.error(err))
             }
             
-            else if (form_id === "U9a430un") {
+            else if (form_id === form_lang_id) {
                 sendMail(2, 'id', email, firstName, lastName, age, gender, wa, ID)
-                  .then((messageId) => console.log("Message sent successfully:", messageId))
+                  .then((messageId) => console.log(`Message sent successfully: ${messageId}`))
                   .catch((err) => console.error(err))
             }
 

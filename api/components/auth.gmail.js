@@ -1,7 +1,7 @@
 // This auth.js is the first step of verifying the gmail API
 // You have to visit the URL then sign in with your gmail account
 // This is to give permission
-// Then copy the code from the url given by the gmail API to CODE_FROM_GOOGLE
+// Then copy the code from the url given by the gmail API to GMAIL_CODE
 
 const dotenv = require('dotenv')
 dotenv.config()

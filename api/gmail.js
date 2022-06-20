@@ -3,6 +3,7 @@ dotenv.config();
 
 const { google } = require("googleapis");
 const MailComposer = require("nodemailer/lib/mail-composer");
+const tokens = require("../token.json");
 const emailType1 = require("./email/type1");
 const emailType2 = require("./email/type2");
 const emailType3 = require("./email/type3");
@@ -19,14 +20,6 @@ const getGmailService = () => {
     client_secret,
     redirect_uris
   );
-
-  const tokens = {
-    access_token: process.env.GMAIL_ACCESS_TOKEN,
-    refresh_token: process.env.GMAIL_REFRESH_TOKEN,
-    scope: "https://www.googleapis.com/auth/gmail.send",
-    token_type: "Bearer",
-    expiry_date: Number(process.env.GMAIL_TOKEN_EXPIRY_DATE)
-  };
 
   oAuth2Client.setCredentials(tokens);
 

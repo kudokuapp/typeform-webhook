@@ -22,7 +22,7 @@ const oAuth2Client = new google.auth.OAuth2(
 oAuth2Client
   .getToken(code)
   .then(({ tokens }) => {
-    fs.writeFileSync("../../envtoken.json", JSON.stringify(tokens));
+    fs.writeFileSync("../../token.json", JSON.stringify(tokens));
     console.log("Access token and refresh token stored to token.json");
   })
   .catch((err) => console.error(err));

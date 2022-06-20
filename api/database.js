@@ -1,7 +1,6 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
-const fs = require('fs');
-const Pool = require('pg').Pool;
+const Pool = require("pg").Pool;
 
 //database credentials
 const {
@@ -9,7 +8,7 @@ const {
   PGPASSWORD: dbPassword,
   PGHOST: dbHost,
   PGPORT: dbPort,
-  PGDATABASE: dbDatabase,
+  PGDATABASE: dbDatabase
 } = process.env;
 
 //Initialize database
@@ -21,8 +20,9 @@ const pool = new Pool({
   database: dbDatabase,
   ssl: {
     rejectUnauthorized: true,
-    ca: fs.readFileSync(`./secure/ca-certificate.crt`).toString(),
-  },
+    ca: process.env.PGCACERTIFICATE
+    //fs.readFileSync(`./secure/ca-certificate.crt`).toString()
+  }
 });
 
 const getTodayDate = () => {
@@ -75,7 +75,7 @@ const dbQueryUsersAnswers = (
     email,
     wa,
     formToken,
-    todayDate,
+    todayDate
   ];
 
   return new Promise(function (resolve, reject) {
@@ -108,5 +108,5 @@ const dbQueryIfUsersExists = (email) => {
 module.exports = {
   dbQueryUsersData,
   dbQueryUsersAnswers,
-  dbQueryIfUsersExists,
+  dbQueryIfUsersExists
 };

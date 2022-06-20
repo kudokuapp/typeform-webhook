@@ -4,3 +4,4 @@ node_modules/
 Kudoku.session.sql
 .env
 secure/
+envtoken.json

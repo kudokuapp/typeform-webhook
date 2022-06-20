@@ -1,17 +1,18 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 
-const { google } = require('googleapis');
-const MailComposer = require('nodemailer/lib/mail-composer');
-const tokens = require('../secure/token.json');
-const emailType1 = require('./email/type1');
-const emailType2 = require('./email/type2');
-const emailType3 = require('./email/type3');
+const { google } = require("googleapis");
+const MailComposer = require("nodemailer/lib/mail-composer");
+const emailType1 = require("./email/type1");
+const emailType2 = require("./email/type2");
+const emailType3 = require("./email/type3");
 
 const getGmailService = () => {
-  const { GMAIL_CLIENT_SECRET: client_secret, GMAIL_CLIENT_ID: client_id } =
-    process.env;
-  const redirect_uris = 'http://localhost';
+  const {
+    GMAIL_CLIENT_SECRET: client_secret,
+    GMAIL_CLIENT_ID: client_id
+  } = process.env;
+  const redirect_uris = "http://localhost";
 
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
@@ -19,19 +20,27 @@ const getGmailService = () => {
     redirect_uris
   );
 
+  const tokens = {
+    access_token: process.env.GMAIL_ACCESS_TOKEN,
+    refresh_token: process.env.GMAIL_REFRESH_TOKEN,
+    scope: "https://www.googleapis.com/auth/gmail.send",
+    token_type: "Bearer",
+    expiry_date: Number(process.env.GMAIL_TOKEN_EXPIRY_DATE)
+  };
+
   oAuth2Client.setCredentials(tokens);
 
-  const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
+  const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
 
   return gmail;
 };
 
 const encodeMessage = (message) => {
   return Buffer.from(message)
-    .toString('base64')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=+$/, '');
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
 };
 
 const createMail = async (options) => {
@@ -44,10 +53,10 @@ const prepareMail = async (options) => {
   const gmail = getGmailService();
   const rawMessage = await createMail(options);
   const obj = {
-    userId: 'me',
+    userId: "me",
     resource: {
-      raw: rawMessage,
-    },
+      raw: rawMessage
+    }
   };
   const { data: { id } = {} } = await gmail.users.messages.send(obj);
 
@@ -68,16 +77,16 @@ const sendMail = async (
 ) => {
   let options = {
     to: email,
-    from: 'Furqon @ Kudoku <furqon@kudoku.id>',
-    replyTo: 'furqon@kudoku.id',
-    textEncoding: 'base64',
+    from: "Furqon @ Kudoku <furqon@kudoku.id>",
+    replyTo: "furqon@kudoku.id",
+    textEncoding: "base64"
   };
 
   if (type === 1) {
-    if (lang === 'en') {
+    if (lang === "en") {
       options.subject = `Hi, ${firstName}! Let's meet Kudoku 😎`;
       options.html = emailType1(
-        'en',
+        "en",
         firstName,
         lastName,
         age,
@@ -85,10 +94,10 @@ const sendMail = async (
         email,
         wa
       );
-    } else if (lang === 'id') {
+    } else if (lang === "id") {
       options.subject = `Hi, ${firstName}! Kenalan sama Kudoku yuk 😎`;
       options.html = emailType1(
-        'id',
+        "id",
         firstName,
         lastName,
         age,
@@ -98,20 +107,20 @@ const sendMail = async (
       );
     }
   } else if (type === 2) {
-    if (lang === 'en') {
+    if (lang === "en") {
       options.subject = `Thanks for joining the Kudoku waitlist 🤩`;
-      options.html = emailType2('en', firstName, ID);
-    } else if (lang === 'id') {
+      options.html = emailType2("en", firstName, ID);
+    } else if (lang === "id") {
       options.subject = `Terima kasih sudah ikut Kudoku waitlist 🤩`;
-      options.html = emailType2('id', firstName, ID);
+      options.html = emailType2("id", firstName, ID);
     }
   } else if (type === 3) {
-    if (lang === 'en') {
+    if (lang === "en") {
       options.subject = `Hmm it seems like you already a Kudos! 🤔`;
-      options.html = emailType3('en', firstName, ID);
-    } else if (lang === 'id') {
+      options.html = emailType3("en", firstName, ID);
+    } else if (lang === "id") {
       options.subject = `Hmm nampaknya kamu sudah menjadi Kudos! 🤔`;
-      options.html = emailType3('id', firstName, ID);
+      options.html = emailType3("id", firstName, ID);
     }
   }
 

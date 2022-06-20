@@ -1,7 +1,7 @@
 {
   "name": "typeform-webhook",
   "version": "1.0.0",
-  "description": "This repository is for the Kudoku's personal form Typeform webhook.",
+  "description": "CodeSandbox for github.com/kudokuapp/typeform-webhook/",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -24,5 +24,6 @@
     "googleapis": "^100.0.0",
     "nodemailer": "^6.7.5",
     "pg": "^8.7.3"
-  }
+  },
+  "keywords": []
 }

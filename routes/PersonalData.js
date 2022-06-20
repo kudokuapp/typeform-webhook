@@ -61,7 +61,7 @@ router.post("/", async(req, res) => {
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))
             } 
-            else if (form_response.form_id === "Aq7EqLjd") {
+            else if (form_id === "Aq7EqLjd") {
                 sendMail(1, 'id', email, firstName, lastName, age, genderUnclean, waUnclean)
                   .then((messageId) => console.log("Message sent successfully:", messageId))
                   .catch((err) => console.error(err))

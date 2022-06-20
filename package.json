@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kudokuapp/typeform-webhook-personal-form.git"
+    "url": "git+https://github.com/kudokuapp/typeform-webhook.git"
   },
   "author": "Kudoku",
   "devDependencies": {

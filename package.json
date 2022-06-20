@@ -5,8 +5,8 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "gmail-auth": "node api/email/components/auth.gmail.js",
-    "gmail-token": "node api/email/components/token.gmail.js",
+    "gmail-auth": "node api/components/auth.gmail.js",
+    "gmail-token": "node api/components/token.gmail.js",
     "start": "node index.js"
   },
   "repository": {

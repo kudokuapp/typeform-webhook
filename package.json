@@ -1,7 +1,7 @@
 {
   "name": "typeform-webhook",
   "version": "1.0.0",
-  "description": "CodeSandbox for github.com/kudokuapp/typeform-webhook/",
+  "description": "Typeform webhook for incoming Kudoku's form",
   "main": "index.js",
   "private": true,
   "scripts": {

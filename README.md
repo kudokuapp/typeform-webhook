@@ -11,7 +11,7 @@ Project maintainers and builders: _Furqon Wilogo_
 To start the development server, first we need to install the dependencies:
 
 ```
-npm install
+yarn install
 ```
 
 Then, make a `.env` file on the **root** folder with the proper environment variables:
@@ -33,16 +33,16 @@ Then, make a `.env` file on the **root** folder with the proper environment vari
 | GMAIL_CLIENT_SECRET | GMAIL API\* |
 | GMAIL_CODE | GMAIL API\*\* |
 
-N.B.: Make sure you also have a `.crt` file for connecting the database. Place it under the environment variable `CA_CERT`. Look for 'multi-line dotenv support'.
+N.B.: Make sure you also have a `.crt` file for connecting the database. You can also place it under the environment variable `CA_CERT`. Look for 'multi-line dotenv support'.
 
 \*You get this the first time setting up the GMAIL API.
 
 \*\*You get this after running `auth.gmail.js`, go to the url, sign in with your respective google account that you set up for the GMAIL API, then it will be redirected to the localhost with code in the URL Parameters. You then copy the code and past it into `GMAIL_CODE`.
 
-Then, using `npm`,
+Then, using `yarn`,
 
 ```
-npm start
+yarn start
 ```
 
 ---
